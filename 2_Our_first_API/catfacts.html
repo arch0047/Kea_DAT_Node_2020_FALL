@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity=
+                  "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous" />
+    <title>Cat facts</title>
+
+</head>
+<body>
+
+<!-- show the page in you browser with express -->
+<h1> Welcome to cat facts</h1>
+<button type="button" id="fetchBtn"
+        class="btn btn-primary">
+    Fetch Data
+</button>
+
+<!-- show a table with 2 cat facts -->
+
+<h2>Cat facts Table</h2>
+<table>
+    <tr>
+        <th>Fact 1</th>
+        <th>Fact 2</th>
+    </tr>
+    <td> Fun fact 1</td>
+    <td>Fun fact 2</td>
+
+</table>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- det er et get request fordi det virker på browser-->
+<script>
+    /*
+    * 1. get cat fact by the way of $.ajex()
+    * 2. show the cat facts in the table(jquery)
+    * 3. style it.
+    * 4. Bonus: pagination
+    * */
+
+     let fetchBtn = document.getElementById("fetchBtn");
+     fetchBtn.addEventListener("click", buttonclickhandler);
+    function buttonclickhandler() {
+
+    }
+
+    $.get("http:/cat-fact.herokuapp.com/facts",(response)=>{
+        console.log(response);
+    });
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
