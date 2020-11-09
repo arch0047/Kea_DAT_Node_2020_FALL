@@ -4,6 +4,7 @@
  // instantiate
  const app = express();
  const fetch = require("node-fetch");
+ const encoding = require("encoding")
 
 
 
@@ -114,36 +115,35 @@ app.get("/catfacts",(req,res)=>{
 return res.sendFile(__dirname,"/catfacts.html")
 });
 
-app.get("/proxy",(req,res)=>{
-   fetch("http://www.google.com")
-       .then(result.textConverted())
-       .then(body=> consloe.log(body));
-   // const page=encoding.convert(body);
-    return res.send({placeholder:"All is well"});
-});
+app.get("/proxy",(req,res)=> {
+    fetch("http://www.google.com")
+        .then(result.textConverted()) // when we go to the site there are some words which looks wired
+        //  so we use textConverted to convert the page in to a nice format so we can see all nicely
+        .then(body => {
+            // const page=encoding.convert(body); //convert the page in to a format so we can see all nicely
+            return res.send(body);
+        });
 
 
+    app.get("/documentation", (req, res) => {
+        return res.sendFile(__dirname + "/documentation.html");
+    });
 
- app.get("/documentation",(req,res) =>{
-     return res.sendFile(__dirname +"/documentation.html");
- });
+    app.get("/documentation2", (req, res) => {
+        return res.sendFile(__dirname + "/documentation2.html");
+    });
 
-app.get("/documentation2",(req,res) =>{
-    return res.sendFile(__dirname +"/documentation2.html");
- });
+    // defining a call back with this ()=>{}
+    app.listen(8080, (error) => {
 
- // defining a call back with this ()=>{}
- app.listen(8080,( error)=>{
-
-      if (error){
-         console.log(" Error starting the server") ;
-      }
-     console.log("Server is running on port", 8080);
-
+        if (error) {
+            console.log(" Error starting the server");
+        }
+        console.log("Server is running on port", 8080);
 
 
-  })
-
+    });
+})
 
  // extra learned by my self
     /* const port= process.env.PORT || 8080
